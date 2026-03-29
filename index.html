@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dashboard Landing</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --subtext: #6b7280;
+  --border: #e5e7eb;
+  --accent: #000000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+section {
+  padding: 96px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease-out;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* NAVBAR */
+.navbar {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 100;
+  transition: border 0.3s ease;
+}
+
+.navbar.scrolled {
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.nav-center {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-link {
+  color: var(--subtext);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav-link:hover {
+  color: var(--text);
+}
+
+.btn {
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: #000;
+  color: #fff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #333;
+}
+
+.btn-secondary:hover {
+  background: #f3f4f6;
+}
+
+/* HERO */
+.hero {
+  padding-top: 120px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.hero p {
+  color: var(--subtext);
+  margin-bottom: 24px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.mock {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #f3f4f6;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+/* LOGOS */
+.logos {
+  text-align: center;
+}
+
+.logos p {
+  color: var(--subtext);
+  margin-bottom: 24px;
+}
+
+.logo-row {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+/* FEATURES */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.feature-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 24px;
+  transition: all 0.2s ease;
+}
+
+.feature-card:hover {
+  border-color: #d1d5db;
+  transform: translateY(-2px);
+}
+
+.feature-icon {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.feature-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.feature-desc {
+  color: var(--subtext);
+  font-size: 14px;
+}
+
+/* HOW */
+.step {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 64px;
+  align-items: center;
+}
+
+.step:nth-child(even) {
+  direction: rtl;
+}
+
+.step:nth-child(even) * {
+  direction: ltr;
+}
+
+.badge {
+  display: inline-block;
+  background: #f3f4f6;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+/* PRICING */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.card {
+  border-radius: 6px;
+  padding: 32px;
+  border: 1px solid var(--border);
+}
+
+.card.dark {
+  background: #000;
+  color: #fff;
+  border: none;
+}
+
+.card ul {
+  margin-top: 16px;
+  list-style: none;
+}
+
+.card li {
+  margin-bottom: 8px;
+}
+
+/* CTA */
+.cta {
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+.cta p {
+  color: #d1d5db;
+  margin: 12px 0 20px;
+}
+
+/* FOOTER */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 64px 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.footer a {
+  display: block;
+  color: var(--subtext);
+  text-decoration: none;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.footer a:hover {
+  color: var(--text);
+}
+
+.copyright {
+  margin-top: 32px;
+  color: var(--subtext);
+  font-size: 14px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .hero-grid,
+  .features-grid,
+  .pricing-grid,
+  .footer-grid,
+  .step {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-center {
+    display: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <strong>Dash</strong>
+    <div class="nav-center">
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#how" class="nav-link">How it works</a>
+    </div>
+    <button class="btn btn-primary">Get started free</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <h1>Run your business with clarity and speed</h1>
+      <p>All your data, workflows, and insights in one simple dashboard.</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary">Get started</button>
+        <button class="btn btn-secondary">Learn more</button>
+      </div>
+    </div>
+    <div class="mock"></div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<section class="logos">
+  <div class="container">
+    <p>Trusted by teams at</p>
+    <div class="logo-row">
+      <span>Acme</span>
+      <span>Globex</span>
+      <span>Initech</span>
+      <span>Umbrella</span>
+      <span>Hooli</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container features-grid">
+    <div class="feature-card">📊<div class="feature-title">Analytics</div><div class="feature-desc">Understand performance in real-time.</div></div>
+    <div class="feature-card">⚡<div class="feature-title">Automation</div><div class="feature-desc">Streamline workflows instantly.</div></div>
+    <div class="feature-card">🔒<div class="feature-title">Security</div><div class="feature-desc">Enterprise-grade protection built-in.</div></div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how">
+  <div class="container">
+    <div class="step">
+      <div>
+        <div class="badge">1</div>
+        <h3>Connect your tools</h3>
+        <p class="feature-desc">Integrate your existing stack easily.</p>
+      </div>
+      <div class="mock"></div>
+    </div>
+
+    <div class="step">
+      <div>
+        <div class="badge">2</div>
+        <h3>Customize dashboards</h3>
+        <p class="feature-desc">Build views tailored to your workflow.</p>
+      </div>
+      <div class="mock"></div>
+    </div>
+
+    <div class="step">
+      <div>
+        <div class="badge">3</div>
+        <h3>Track performance</h3>
+        <p class="feature-desc">Make decisions with real-time data.</p>
+      </div>
+      <div class="mock"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container pricing-grid">
+    <div class="card">
+      <h3>Free</h3>
+      <p>$0 / mo</p>
+      <ul>
+        <li>✔ Basic analytics</li>
+        <li>✔ 3 dashboards</li>
+        <li>✔ Email support</li>
+        <li>✔ Community access</li>
+      </ul>
+    </div>
+
+    <div class="card dark">
+      <div class="badge">Most popular</div>
+      <h3>Pro</h3>
+      <p>$12 / mo</p>
+      <ul>
+        <li>✔ Unlimited dashboards</li>
+        <li>✔ Advanced analytics</li>
+        <li>✔ Automation</li>
+        <li>✔ Priority support</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <h2>Start building today</h2>
+    <p>No credit card required.</p>
+    <button class="btn btn-primary">Get started</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <strong>Product</strong>
+        <a href="#">Features</a>
+        <a href="#">Pricing</a>
+      </div>
+      <div>
+        <strong>Company</strong>
+        <a href="#">About</a>
+        <a href="#">Careers</a>
+      </div>
+      <div>
+        <strong>Resources</strong>
+        <a href="#">Docs</a>
+        <a href="#">Blog</a>
+      </div>
+      <div>
+        <strong>Legal</strong>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Dash Inc.</div>
+  </div>
+</section>
+
+<script>
+// NAVBAR BORDER ON SCROLL
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  if (window.scrollY > 60) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+// INTERSECTION OBSERVER
+const sections = document.querySelectorAll('section');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+sections.forEach(section => observer.observe(section));
+
+// STAGGER FEATURES
+const features = document.querySelectorAll('.feature-card');
+features.forEach((card, i) => {
+  card.style.transitionDelay = `${i * 100}ms`;
+});
+</script>
+
+</body>
+</html>
